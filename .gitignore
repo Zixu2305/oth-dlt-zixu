@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+
+# Generated output
+build/
+dist/
+coverage/
+
+# Local tooling and OS files
+.DS_Store
+npm-debug.log*
