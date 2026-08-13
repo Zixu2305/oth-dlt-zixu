@@ -15,6 +15,7 @@ for the course test:
 
 - `contracts/voteTopic.sol` contains the `VoteTopic` Solidity contract.
 - `deployVoteTopic.js` configures and deploys that contract to Hedera Testnet.
+- `resultsVoteTopic.js` prints the complete tally and reports a winner or draw.
 - `site/` contains a local browser interface for displaying proposals, casting
   votes with temporary Testnet credentials, and demonstrating the safeguards.
 
@@ -32,8 +33,10 @@ cannot be changed after deployment. The contract:
 - emits a `VoteCast` event after every successful vote; and
 - returns the proposal with the most votes through `winner()`.
 
-If multiple proposals are tied, the proposal appearing first in the constructor
-input is returned. Calling `winner()` before a vote has been cast reverts.
+The contract's `winner()` function uses the first constructor proposal as its
+deterministic tie-break. The site and results script inspect the complete tally
+and present tied leaders as a draw instead. Calling `winner()` before a vote has
+been cast reverts.
 
 The design enforces one vote per blockchain address, not one vote per human. A
 person who controls multiple accounts could vote once from each account.
@@ -108,6 +111,23 @@ current browser tab, the input is cleared after use, and the credential is not
 written to browser storage. This credential-entry interface is strictly for a
 local Testnet experiment and must not be hosted publicly or used with Mainnet
 credentials.
+
+Use one deployment for practice. When testing is finished, deploy a fresh
+instance, load its new contract ID in the site, and leave it untouched until the
+live demonstration.
+
+### Print the complete result
+
+Add the deployed `0.0.x` contract ID to `.env` as `CONTRACT_ID`, or provide it
+directly:
+
+```bash
+npm run results -- --contract 0.0.123456
+```
+
+The command reads every proposal, prints its vote total, and reports either a
+single winner or every proposal sharing a draw. It does not submit a transaction
+or change the contract state.
 
 ## 1. Setup
 

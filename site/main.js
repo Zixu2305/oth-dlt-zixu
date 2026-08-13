@@ -13,7 +13,6 @@ const CONTRACT_ABI = [
   "function getProposal(uint256 proposalIndex) view returns (string name, uint256 voteCount)",
   "function voters(address) view returns (uint8)",
   "function vote(uint256 proposalIndex)",
-  "function winner() view returns (string result)",
 ];
 
 const VOTER_STATES = ["Eligible", "Blocked", "Voted"];
@@ -275,12 +274,26 @@ async function readProposals(contract) {
   return results.map(([name, voteCount]) => ({ name, voteCount }));
 }
 
-async function readWinner(contract) {
-  try {
-    return await contract.winner();
-  } catch {
+function describeResult(proposals) {
+  const highestVoteCount = proposals.reduce(
+    (highest, proposal) =>
+      proposal.voteCount > highest ? proposal.voteCount : highest,
+    0n,
+  );
+
+  if (highestVoteCount === 0n) {
     return "No votes yet";
   }
+
+  const leaders = proposals.filter(
+    (proposal) => proposal.voteCount === highestVoteCount,
+  );
+
+  if (leaders.length > 1) {
+    return `Draw — ${leaders.map((proposal) => proposal.name).join(", ")}`;
+  }
+
+  return `Winner — ${leaders[0].name}`;
 }
 
 async function refreshContractData() {
@@ -298,17 +311,14 @@ async function refreshContractData() {
     }
 
     const contract = new Contract(contractAddress, CONTRACT_ABI, readProvider);
-    const [proposals, winner] = await Promise.all([
-      readProposals(contract),
-      readWinner(contract),
-    ]);
+    const proposals = await readProposals(contract);
 
     if (connectedAddress) {
       const stateIndex = Number(await contract.voters(connectedAddress));
       updateVoterState(VOTER_STATES[stateIndex] ?? "Unknown");
     }
 
-    elements.winnerName.textContent = winner;
+    elements.winnerName.textContent = describeResult(proposals);
     renderProposals(proposals);
     setStatus("Contract data refreshed from Hedera Testnet.", "success");
   } catch (error) {

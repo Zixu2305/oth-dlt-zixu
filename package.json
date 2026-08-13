@@ -7,6 +7,7 @@
   "scripts": {
     "deploy": "node deploy.js",
     "call": "node call.js",
+    "results": "node resultsVoteTopic.js",
     "site:dev": "vite site",
     "site:build": "vite build site --outDir ../dist/site --emptyOutDir"
   },
