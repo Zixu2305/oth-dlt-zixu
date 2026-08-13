@@ -1,0 +1,614 @@
+:root {
+  color: #17221f;
+  background: #f1efe8;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 82% 4%, rgba(214, 255, 111, 0.32), transparent 25rem),
+    #f1efe8;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid #17221f;
+  outline-offset: 3px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(23, 34, 31, 0.18);
+}
+
+.brand {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #17221f;
+  color: #d6ff6f;
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  letter-spacing: -0.02em;
+}
+
+.brand small {
+  margin-top: 2px;
+  color: #64706c;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header-actions,
+.input-action,
+.voter-state-row,
+.ballot-heading {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions {
+  gap: 12px;
+}
+
+.network-pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid rgba(23, 34, 31, 0.2);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.network-dot,
+.state-dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.network-dot {
+  background: #3f9b66;
+  box-shadow: 0 0 0 4px rgba(63, 155, 102, 0.13);
+}
+
+.button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.button-primary {
+  padding: 11px 18px;
+  background: #17221f;
+  color: white;
+}
+
+.button-secondary {
+  padding: 11px 20px;
+  background: #d6ff6f;
+  color: #17221f;
+}
+
+main,
+footer {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.hero {
+  max-width: 870px;
+  padding: 92px 0 68px;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 16px;
+  color: #69736f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  max-width: 800px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(56px, 9.5vw, 116px);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.86;
+}
+
+.hero-copy {
+  max-width: 620px;
+  margin: 34px 0 0;
+  color: #56615d;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.6;
+}
+
+.setup-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(360px, 1.25fr);
+  gap: 52px;
+  padding: 34px;
+  border-radius: 8px;
+  background: #17221f;
+  color: white;
+}
+
+.setup-card h2,
+.ballot h2,
+.activity h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.setup-card p:not(.section-label) {
+  max-width: 440px;
+  margin: 12px 0 0;
+  color: #abb4b0;
+  line-height: 1.55;
+}
+
+.setup-card .section-label {
+  color: #d6ff6f;
+}
+
+.contract-form {
+  align-self: center;
+}
+
+.contract-form label {
+  display: block;
+  margin-bottom: 9px;
+  color: #abb4b0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.input-action {
+  gap: 10px;
+}
+
+.input-action input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 15px;
+  border: 1px solid #59635f;
+  border-radius: 4px;
+  background: #23302c;
+  color: white;
+}
+
+.input-action input::placeholder {
+  color: #87918d;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.32fr) minmax(0, 1fr);
+  gap: 1px;
+  margin-top: 72px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 34, 31, 0.18);
+  border-radius: 8px;
+  background: rgba(23, 34, 31, 0.18);
+}
+
+.voter-card,
+.ballot {
+  background: #faf9f4;
+}
+
+.voter-card {
+  padding: 34px;
+}
+
+.voter-state-row {
+  gap: 10px;
+  margin-bottom: 34px;
+  font-size: 22px;
+}
+
+.state-dot {
+  width: 10px;
+  height: 10px;
+}
+
+.state-neutral,
+.state-not-connected,
+.state-contract-not-loaded,
+.state-unknown {
+  background: #8b938f;
+}
+
+.state-eligible {
+  background: #3f9b66;
+  box-shadow: 0 0 0 5px rgba(63, 155, 102, 0.13);
+}
+
+.state-blocked {
+  background: #c75548;
+  box-shadow: 0 0 0 5px rgba(199, 85, 72, 0.13);
+}
+
+.state-voted {
+  background: #a27527;
+  box-shadow: 0 0 0 5px rgba(162, 117, 39, 0.13);
+}
+
+.account-block {
+  padding-top: 22px;
+  border-top: 1px solid rgba(23, 34, 31, 0.14);
+}
+
+.credential-form {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0 30px;
+  padding: 20px;
+  border: 1px solid rgba(23, 34, 31, 0.16);
+  border-radius: 5px;
+  background: #f1efe8;
+}
+
+.credential-form label {
+  margin-top: 5px;
+  color: #59645f;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.credential-form input {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid rgba(23, 34, 31, 0.28);
+  border-radius: 3px;
+  background: #faf9f4;
+  color: #17221f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+.credential-warning {
+  margin: 7px 0 5px;
+  color: #8a5d22;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.button-session {
+  width: 100%;
+  padding: 10px 14px;
+  background: #17221f;
+  color: white;
+}
+
+.session-details .account-block + .account-block {
+  margin-top: 20px;
+}
+
+.session-details > .text-button {
+  margin-top: 14px;
+  margin-right: 16px;
+}
+
+.danger-action {
+  color: #a53d33;
+}
+
+.account-block span,
+.winner-panel span {
+  display: block;
+  margin-bottom: 8px;
+  color: #6b7571;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-block code {
+  display: block;
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: #17221f;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.text-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.voter-card > .text-button {
+  margin-top: 14px;
+}
+
+.aside-note {
+  margin: 28px 0 0;
+  color: #65706c;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.aside-note code {
+  color: #17221f;
+}
+
+.winner-panel {
+  margin-top: 42px;
+  padding: 22px;
+  border-radius: 5px;
+  background: #d6ff6f;
+}
+
+.winner-panel strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.ballot {
+  padding: 34px;
+}
+
+.ballot-heading {
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.proposal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proposal-card,
+.empty-state {
+  min-height: 240px;
+  padding: 24px;
+  border: 1px solid rgba(23, 34, 31, 0.16);
+  border-radius: 6px;
+  background: #f1efe8;
+}
+
+.proposal-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal-number,
+.empty-state > span {
+  color: #7b8581;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+.proposal-card h3,
+.empty-state h3 {
+  margin: 35px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+.vote-count,
+.empty-state p {
+  margin: 0;
+  color: #69736f;
+}
+
+.button-vote {
+  width: 100%;
+  margin-top: auto;
+  padding: 11px 16px;
+  border: 1px solid #17221f;
+  background: transparent;
+  color: #17221f;
+}
+
+.button-vote:hover:not(:disabled) {
+  background: #17221f;
+  color: white;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+}
+
+.activity {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.32fr) minmax(0, 1fr);
+  gap: 42px;
+  align-items: center;
+  padding: 72px 0;
+}
+
+.status-message {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 18px 22px;
+  border-left: 4px solid #8b938f;
+  background: #faf9f4;
+  line-height: 1.5;
+}
+
+.status-message a {
+  flex: 0 0 auto;
+  color: inherit;
+  font-weight: 800;
+}
+
+.status-success {
+  border-color: #3f9b66;
+}
+
+.status-error {
+  border-color: #c75548;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 26px 0 38px;
+  border-top: 1px solid rgba(23, 34, 31, 0.18);
+  color: #69736f;
+  font-size: 13px;
+}
+
+footer a {
+  color: #17221f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 820px) {
+  .setup-card,
+  .dashboard,
+  .activity {
+    grid-template-columns: 1fr;
+  }
+
+  .proposal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header,
+  main,
+  footer {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .network-pill {
+    display: none;
+  }
+
+  .hero {
+    padding: 56px 0 48px;
+  }
+
+  .hero h1 {
+    font-size: 54px;
+  }
+
+  .setup-card,
+  .voter-card,
+  .ballot {
+    padding: 24px;
+  }
+
+  .input-action,
+  .ballot-heading,
+  .status-message,
+  footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dashboard {
+    margin-top: 44px;
+  }
+
+  .activity {
+    gap: 24px;
+    padding: 48px 0;
+  }
+}

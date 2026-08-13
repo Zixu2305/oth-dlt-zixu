@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple interface for demonstrating the VoteTopic smart contract on Hedera Testnet."
+    />
+    <title>VoteTopic · Hedera Testnet</title>
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="VoteTopic home">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span>
+          <strong>VoteTopic</strong>
+          <small>Hedera Testnet</small>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span class="network-pill">
+          <span class="network-dot" aria-hidden="true"></span>
+          Testnet
+        </span>
+        <button class="button button-primary" id="openSession" type="button">
+          Use test account
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">COURSE TEST · LIVE CONTRACT DEMO</p>
+        <h1>One address.<br />One verifiable vote.</h1>
+        <p class="hero-copy">
+          Start a temporary test-account session, choose a proposal, and let the
+          deployed smart contract enforce voter eligibility on Hedera Testnet.
+        </p>
+      </section>
+
+      <section class="setup-card" aria-labelledby="setupTitle">
+        <div>
+          <p class="section-label">CONTRACT CONNECTION</p>
+          <h2 id="setupTitle">Load the deployed ballot</h2>
+          <p>
+            Paste either the contract ID printed by the deployment script or
+            its EVM address.
+          </p>
+        </div>
+
+        <form class="contract-form" id="contractForm">
+          <label for="contractAddress">Contract ID or EVM address</label>
+          <div class="input-action">
+            <input
+              id="contractAddress"
+              name="contractAddress"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="0.0.123456 or 0x0000…"
+            />
+            <button class="button button-secondary" type="submit">
+              Load contract
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="dashboard" aria-label="Voting dashboard">
+        <aside class="voter-card">
+          <p class="section-label">CONNECTED VOTER</p>
+          <div class="voter-state-row">
+            <span class="state-dot state-neutral" id="stateDot"></span>
+            <strong id="voterState">Not connected</strong>
+          </div>
+
+          <form class="credential-form" id="credentialForm">
+            <label for="voterAccountId">Testnet account ID</label>
+            <input
+              id="voterAccountId"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="0.0.123456"
+              required
+            />
+
+            <label for="voterPrivateKey">Testnet private key</label>
+            <input
+              id="voterPrivateKey"
+              type="password"
+              autocomplete="new-password"
+              spellcheck="false"
+              placeholder="DER or raw private key"
+              required
+            />
+
+            <p class="credential-warning">
+              Local Testnet experiment only. Use an ECDSA account. The key is
+              held in memory for this tab and is never saved by the site.
+            </p>
+
+            <button class="button button-session" type="submit">
+              Start temporary session
+            </button>
+          </form>
+
+          <div class="session-details" id="sessionDetails" hidden>
+            <div class="account-block">
+              <span>Account ID</span>
+              <code id="activeAccountId">—</code>
+            </div>
+
+            <div class="account-block">
+              <span>Contract-facing address</span>
+              <code id="accountAddress">—</code>
+            </div>
+
+            <button class="text-button" id="copyAddress" type="button">
+              Copy EVM address
+            </button>
+
+            <button class="text-button danger-action" id="forgetAccount" type="button">
+              Forget account
+            </button>
+          </div>
+
+          <p class="aside-note">
+            This exact address is what the contract sees as
+            <code>msg.sender</code>. Use it in the deployment blocklist when
+            testing a blocked account.
+          </p>
+
+          <div class="winner-panel">
+            <span>Current winner</span>
+            <strong id="winnerName">No votes yet</strong>
+          </div>
+        </aside>
+
+        <section class="ballot" aria-labelledby="ballotTitle">
+          <div class="ballot-heading">
+            <div>
+              <p class="section-label">BALLOT</p>
+              <h2 id="ballotTitle">Choose one proposal</h2>
+            </div>
+            <button class="text-button" id="refreshData" type="button">
+              Refresh results
+            </button>
+          </div>
+
+          <div class="proposal-grid" id="proposalGrid" aria-live="polite">
+            <div class="empty-state">
+              <span>01</span>
+              <h3>Waiting for a contract</h3>
+              <p>Load the deployed VoteTopic address to display its proposals.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="activity" aria-labelledby="activityTitle">
+        <div>
+          <p class="section-label">TRANSACTION STATUS</p>
+          <h2 id="activityTitle">Activity</h2>
+        </div>
+        <div class="status-message" id="statusMessage" role="status" aria-live="polite">
+          The interface is ready. Start a temporary account session and load a contract.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>VoteTopic course test</span>
+      <a href="https://hashscan.io/testnet" target="_blank" rel="noreferrer">
+        Open Hedera Testnet on HashScan ↗
+      </a>
+    </footer>
+  </body>
+</html>
